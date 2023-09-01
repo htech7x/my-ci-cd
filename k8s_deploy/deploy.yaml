@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ci-cd-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cicd
+  template:
+    metadata:
+      labels:
+        app: cicd
+    spec:
+      containers:
+        - name: ci
+          image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ci-svc
+spec:
+  selector:
+    app: cicd
+  ports:
+    - port: 80
+      targetPort: 80
+  type: NodePort
+
+
