@@ -17,10 +17,10 @@ jobs:
     - name: Copy custom code
       run: |
         # Copy code from custom_folder into the source folder
-        ls -la src/
+        #ls -la src/
         #cp -r custom_folder/* src/
-        ls -la src/
-        ls -la
+        #ls -la src/
+        #ls -la
   
   build-docker-image:
     needs: build  # <--- this tells that previous step(name "build") should be done before this ont
