@@ -44,4 +44,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/argo-web
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/argo-web:web
