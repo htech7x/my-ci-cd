@@ -6,6 +6,7 @@ FROM nginx:latest
 
 # Copy static website files to the container (if needed)
 # COPY static-html-directory /usr/share/nginx/html
+COPY custom_folder/index.html /usr/share/nginx/html/index.html
 
 # Expose the port on which Nginx will listen
 EXPOSE 80
