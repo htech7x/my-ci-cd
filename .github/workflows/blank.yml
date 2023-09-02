@@ -80,7 +80,8 @@ jobs:
           cat k8s_deploy/deploy.yaml
           pwd
           
-          sed -i "s#${{ github.actor }}.*#{{ github.actor }}/gitops01:${{ github.sha }}#g" k8s_deploy/deploy.yaml
+          echo "XXXXXXX" 
+          sed -i 's/image: nginx/image: nginx222/g' k8s_deploy/deploy.yaml
           cat k8s_deploy/deploy.yaml
           git add .
           git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
