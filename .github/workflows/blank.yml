@@ -80,7 +80,7 @@ jobs:
           cat k8s_deploy/deploy.yaml
           pwd
           
-          sed -i 's/image: nginx/image: ${{ secrets.DOCKERHUB_USER }}/argo-web:web-${{ github.sha }}/g' k8s_deploy/deploy.yaml
+          sed -i 's/image: nginx/image: htech7x/argo-web:web-${{ github.sha }}/g' k8s_deploy/deploy.yaml
           cat k8s_deploy/deploy.yaml
           git add .
           git commit -m 'Done  by Github Actions Job changemanifest: ${{ github.run_number }}'
