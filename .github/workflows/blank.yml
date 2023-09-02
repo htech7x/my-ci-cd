@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     
     - name: Checkout code
@@ -21,9 +20,16 @@ jobs:
         #cp -r custom_folder/* src/
         #ls -la src/
         #ls -la
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Running test
+      run: |
+        ls -la
   
   build-docker-image:
-    needs: build  # <--- this tells that previous step(name "build") should be done before this ont
+    needs: build  # <--- this tells that previous step(name "build") should be done before this one
     runs-on: ubuntu-latest
     steps:
     
@@ -44,5 +50,5 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKERHUB_USER }}/argo-web:web3
+        tags: ${{ secrets.DOCKERHUB_USER }}/argo-web:web-${{ github.run_number }}
         #tags: htech7x/argo-web:web
