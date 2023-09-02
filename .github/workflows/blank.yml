@@ -6,31 +6,31 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
     
-    - name: Checkout code
-      uses: actions/checkout@v3
+  #   - name: Checkout code
+  #     uses: actions/checkout@v3
 
-    - name: Copy custom code
-      run: |
-        # Copy code from custom_folder into the source folder
-        #ls -la src/
-        #cp -r custom_folder/* src/
-        #ls -la src/
-        #ls -la
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+  #   - name: Copy custom code
+  #     run: |
+  #       # Copy code from custom_folder into the source folder
+  #       #ls -la src/
+  #       #cp -r custom_folder/* src/
+  #       #ls -la src/
+  #       #ls -la
+  # test:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
 
-    - name: Running test
-      run: |
-        ls -la
+  #   - name: Running test
+  #     run: |
+  #       ls -la
   
   build-docker-image:
-    needs: [build,test]  # <--- this tells that previous step(name "build") should be done before this one
+    #needs: [build,test]  # <--- this tells that previous step(name "build") should be done before this one
     runs-on: ubuntu-latest
     steps:
     
@@ -80,7 +80,7 @@ jobs:
           cat k8s_deploy/deploy.yaml
           pwd
           sed -i "s+nginx/images.*+nginx/images:app-$RUN_NUMBER+g" deploy.yaml
-          cat deployment.yaml
+          cat k8s_deploy/deploy.yaml
           git add .
           git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
           git push origin main
