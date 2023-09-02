@@ -79,7 +79,9 @@ jobs:
           pwd
           cat k8s_deploy/deploy.yaml
           pwd
-          
+
+          echo "XXXXXXXXXX"
+          echo ${{ github.actor }}
           sed -i 's/image: nginx/image: argo-web:web-${{ github.sha }}/g' k8s_deploy/deploy.yaml
           cat k8s_deploy/deploy.yaml
           git add .
