@@ -47,33 +47,34 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWD }} # repo -> "Settings" -> "Secrets and variables"
         #password: ${{ secrets.DOCKERHUB_TOKEN }}
     
-    # - name: Login to Github # --> https://github.com/docker/login-action#github-container-registry
-    #   uses: docker/login-action@v2
-    #   with:
-    #     registry: ghcr.io
-    #     username: ${{ github.actor }}
-    #     password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Login to Github # --> https://github.com/docker/login-action#github-container-registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKERHUB_USER }}/argo-web:web-${{ github.run_number }}
+        tags: ${{ secrets.DOCKERHUB_USER }}/argo-web:web-${{ github.sha }}
         #tags: htech7x/argo-web:web
-  modify-git:
+  update-manifest-argocd:
     needs: build-docker-image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         name: changing the deployment of git repo
         with:
-          repository: 'htech7x/my-ci-cd-'
+          repository: 'htech7x/my-ci-cd'
           token: ${{ secrets.GIT_PASSWORD }}
-      - name: modify the image
+      - name: setup git config
         run: |
-          git config user.email htech7x@gmail.com
-          git config user.name htech7x
+          git config --global user.email htech7x@gmail.com
+          git config --global user.name htech7x
+          echo ${{ github.sha }}
           ls -la
           pwd
           cat k8s_deploy/deploy.yaml
