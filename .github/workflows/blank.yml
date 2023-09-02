@@ -69,7 +69,7 @@ jobs:
         name: changing the deployment of git repo
         with:
           repository: 'htech7x/my-ci-cd'
-          token: ${{ secrets.GIT_PASSWORD }}
+          token: ${{ secrets.GIT_TOKEN }}
       - name: setup git config
         run: |
           git config --global user.email htech7x@gmail.com
