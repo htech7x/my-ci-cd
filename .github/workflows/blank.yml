@@ -30,7 +30,7 @@ jobs:
         ls -la
   
   build-docker-image:
-    needs: build  # <--- this tells that previous step(name "build") should be done before this one
+    needs: [build,test]  # <--- this tells that previous step(name "build") should be done before this one
     runs-on: ubuntu-latest
     steps:
     
