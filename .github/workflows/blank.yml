@@ -84,7 +84,7 @@ jobs:
           echo ${{ github.actor }}
           # sed -i 's/image: nginx/image: ${{ github.actor }}/argo-web:web-${{ github.sha }}/g' k8s_deploy/deploy.yaml
           # sed -i "s/image: nginx/image: ${{ github.actor }}/argo-web:web-${{ github.sha }}/g" k8s_deploy/deploy.yaml
-          sed -i `s/${{ github.actor }}.*/${{ github.actor }}\/argo-web:web-${{ github.sha }}/g` k8s_deploy/deploy.yaml
+          sed -i "s/${{ github.actor }}.*/${{ github.actor }}\/argo-web:web-${{ github.sha }}/g" k8s_deploy/deploy.yaml
           cat k8s_deploy/deploy.yaml
           echo "XXXXXXXXXX"
           git add .
