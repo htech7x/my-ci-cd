@@ -81,14 +81,15 @@ jobs:
           pwd
 
           echo "XXXXXXXXXX"
-          echo ${{ github.actor }}
+
           sed -i 's/${{ github.actor }}.*/${{ github.actor }}\/argo-web:web-${{ github.sha }}/g' k8s_deploy/deploy.yaml
           cat k8s_deploy/deploy.yaml
+
           echo "XXXXXXXXXX"
           git add .
-          git commit -m 'Done  by Github Actions Job changemanifest: ${{ github.run_number }}'
+          git commit -m 'Done  by Github Actions Job change manifest: ${{ github.run_number }}'
           git push origin main
-        env:
-          GIT_USERNAME: ${{ secrets.GIT_USER }}
-          GIT_PASSWORD: ${{ secrets.GIT_PASSWD }}
-          RUN_NUMBER: ${{ github.run_number }}
+        #env:
+        #  GIT_USERNAME: ${{ secrets.GIT_USER }}
+        #  GIT_PASSWORD: ${{ secrets.GIT_PASSWD }}
+        #  RUN_NUMBER: ${{ github.run_number }}
