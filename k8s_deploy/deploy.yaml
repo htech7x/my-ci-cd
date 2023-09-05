@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ci
-          image: htech7x/argo-web:web-1e6795a7be02bea5919e98b0b5658a530a2402fb
+          image: htech7x/argo-web:web-0950cacfed4c20be4be70a567f190938dc1f5caf
 ---
 apiVersion: v1
 kind: Service
