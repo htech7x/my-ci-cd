@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ci
-          image: nginx
+          image: htech7x
 ---
 apiVersion: v1
 kind: Service
