@@ -81,7 +81,9 @@ jobs:
           pwd
 
           echo "XXXXXXXXXX"
-
+          echo ${{ github.run_number }}
+          echo "##########"
+          
           sed -i 's/${{ github.actor }}.*/${{ github.actor }}\/argo-web:web-${{ github.sha }}/g' deploy.yaml
           cat deploy.yaml
 
