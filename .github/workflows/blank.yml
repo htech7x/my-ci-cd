@@ -61,10 +61,19 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USER }}/argo-web:web-${{ github.sha }}
         #tags: htech7x/argo-web:web
+        
   update-manifest-argocd:
     needs: build-docker-image
     runs-on: ubuntu-latest
     steps:
+
+      - name: Login to Github # --> https://github.com/docker/login-action#github-container-registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GIT_TOKEN }}
+        
       - uses: actions/checkout@v3
         name: changing the deployment of git repo
         with:
