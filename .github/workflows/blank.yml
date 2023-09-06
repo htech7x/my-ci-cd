@@ -59,8 +59,11 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKERHUB_USER }}/argo-web:web-${{ github.sha }}
-        #tags: htech7x/argo-web:web
+        #tags: ${{ secrets.DOCKERHUB_USER }}/argo-web:web-${{ github.sha }} # here id of commit is used
+        # example tags: htech7x/argo-web:web-e6233691ab2da3c9849a542f37d2247f6f151d5f
+        
+        #another way is use "github.run_number"
+        tags: ${{ secrets.DOCKERHUB_USER }}/argo-web:web-${{ github.run_number }}
         
   update-manifest-argocd:
     needs: build-docker-image
