@@ -68,7 +68,7 @@ jobs:
       - uses: actions/checkout@v3
         name: changing the deployment of git repo
         with:
-          repository: 'htech7x/my-ci-cd'
+          repository: 'htech7x/my-ci-cd-k8s-deploy' # update "deploy.yaml" for ArgoCD pickup
           token: ${{ secrets.GIT_TOKEN }}
       - name: setup git config
         run: |
@@ -77,13 +77,13 @@ jobs:
           echo ${{ github.sha }}
           ls -la
           pwd
-          cat k8s_deploy/deploy.yaml
+          cat deploy.yaml
           pwd
 
           echo "XXXXXXXXXX"
 
-          sed -i 's/${{ github.actor }}.*/${{ github.actor }}\/argo-web:web-${{ github.sha }}/g' k8s_deploy/deploy.yaml
-          cat k8s_deploy/deploy.yaml
+          sed -i 's/${{ github.actor }}.*/${{ github.actor }}\/argo-web:web-${{ github.sha }}/g' deploy.yaml
+          cat deploy.yaml
 
           echo "XXXXXXXXXX"
           git add .
