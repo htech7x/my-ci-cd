@@ -69,7 +69,7 @@ jobs:
         name: changing the deployment of git repo
         with:
           repository: 'htech7x/my-ci-cd-k8s-deploy' # update "deploy.yaml" for ArgoCD pickup
-          token: ${{ secrets.GIT_TOKEN }}
+          #token: ${{ secrets.GIT_TOKEN }}
       - name: setup git config
         run: |
           git config --global user.email htech7x@gmail.com
