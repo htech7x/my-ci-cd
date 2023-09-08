@@ -28,11 +28,6 @@ jobs:
   #   - name: Running test
   #     run: |
   #       ls -la
-  test-action:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Bla-Bla-Bla-Bla
-        uses: actions/checkout@v3
         
   build-docker-image:
     #needs: [build,test]  # <--- this tells that previous step(name "build") should be done before this one
